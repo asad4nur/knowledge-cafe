@@ -1,7 +1,8 @@
 import { FaBookmark } from "react-icons/fa";
 const Blog = ({ blog, handleAddBookmarks, handleReadingTime }) => {
 
-    const { title, cover, author, author_img, post_date, reading_time, hashtags } = blog || {};
+    const { title, cover, author, author_img, post_date, reading_time, hashtags, id } = blog || {};
+    
     return (
         <div className="mb-20 border-b-1 mt-20 pb-5">
             <img className="w-full mb-8" src={cover} alt="" />
@@ -16,7 +17,7 @@ const Blog = ({ blog, handleAddBookmarks, handleReadingTime }) => {
                 </div>
                 <div>
                     <span>{reading_time} min read</span>
-                    <button className="ml-2 text-2xl text-amber-500"><FaBookmark onClick={() => handleAddBookmarks()}></FaBookmark></button>
+                    <button className="ml-2 text-2xl text-amber-500"><FaBookmark onClick={() => handleAddBookmarks(blog)}></FaBookmark></button>
                 </div>
             </div>
 
@@ -28,7 +29,7 @@ const Blog = ({ blog, handleAddBookmarks, handleReadingTime }) => {
                 }
             </p>
 
-            <button onClick={() => handleReadingTime(reading_time)} className="text-fuchsia-700">Mark As Read</button>
+            <button onClick={() => handleReadingTime({id, reading_time})} className="text-fuchsia-700">Mark As Read</button>
 
         </div>
     );
